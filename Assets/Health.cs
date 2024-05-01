@@ -4,23 +4,30 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public int _maxhealth = 100;
-    public int _currentHealth;
+    public int maxHealth = 100;
+    public int currentHealth;
+
+    public HealthBar healthBar;
 
     // Start is called before the first frame update
     void Start()
     {
-        _currentHealth = _maxhealth;
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
-    public void Heal (int amount)
+    // Update is called once per frame
+    void Update()
     {
-        _currentHealth += amount;
-
-        if (_currentHealth > _maxhealth)
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            _currentHealth = _maxhealth;
+            TakeDamage(20);
         }
     }
 
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+    }
 }
