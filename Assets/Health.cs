@@ -22,12 +22,35 @@ public class Health : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             TakeDamage(20);
+            Debug.Log("Player has taken 20 damage");
         }
+
+        if (currentHealth >= maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+        }
+    }
+
+    public void Heal (int heal)
+    {
+        currentHealth += heal;
+        healthBar.SetHealth(currentHealth);
+
+        if (currentHealth >= maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
     }
 }
