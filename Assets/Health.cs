@@ -13,4 +13,14 @@ public class Health : MonoBehaviour
         _currentHealth = _maxhealth;
     }
 
+    public void Heal (int amount)
+    {
+        _currentHealth += amount;
+
+        if (_currentHealth > _maxhealth)
+        {
+            _currentHealth = _maxhealth;
+        }
+    }
+
 }
