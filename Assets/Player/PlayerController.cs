@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private bool _isSpeedBoostActive;
     private bool _isJumpBoostActive;
     private bool _isSizeBoostActive;
+    private bool _isZeroGravityActive;
 
 
     private void Awake()
@@ -130,7 +131,7 @@ public class PlayerController : MonoBehaviour
         if (!_isSizeBoostActive)
         {
             _isSizeBoostActive = true;
-            
+           
             StartCoroutine(SizeBoostCooldown(duration, increaseAmount));
         }
     }
@@ -140,6 +141,23 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(duration);
         _isSizeBoostActive = false;
         _jumpPower -= increaseAmount;
+    }
+
+    void ActivateZeroGravity(float duration, float increaseAmount)
+    {
+        if (!_isZeroGravityActive)
+        {
+            _isZeroGravityActive = true;
+            _gravity += increaseAmount;
+            StartCoroutine(ZeroGravityCooldown(duration, increaseAmount));
+        }
+    }
+
+    IEnumerator ZeroGravityCooldown(float duration, float increaseAmount)
+    {
+        yield return new WaitForSeconds(duration);
+        _isZeroGravityActive = false;
+        _gravity -= increaseAmount;
     }
 
     public void ActivatePowerUp (int id, float duration, float increaseAmount, GameObject powerUp)
@@ -160,14 +178,21 @@ public class PlayerController : MonoBehaviour
                 ActivateJumpBoost(duration, increaseAmount);
                 Destroy(powerUp);
             }
-
-            if (id == 2)
+        }
+        if (id == 2)
+        {
+            if (!_isSizeBoostActive)
             {
-                if (!_isSizeBoostActive)
-                {
-                    ActivateSizeBoost(duration, increaseAmount);
-                    Destroy(powerUp);
-                }
+                ActivateSizeBoost(duration, increaseAmount);
+                Destroy(powerUp);
+            }
+        }
+        if (id == 3)
+        {
+            if (!_isZeroGravityActive)
+            {
+                ActivateZeroGravity(duration, increaseAmount);
+                Destroy(powerUp);
             }
         }
     }
