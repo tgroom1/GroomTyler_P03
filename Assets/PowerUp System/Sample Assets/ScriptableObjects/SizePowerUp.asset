@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0f5863015f94e44ca442ee3bc7779d6, type: 3}
-  m_Name: ZeroGravityPowerUp
+  m_Name: SizePowerUp
   m_EditorClassIdentifier: 
-  _name: Zero Gravity Power Up
-  _iD: 3
-  _duration: 10
-  _increaseAmount: 8
+  _name: Size Up
+  _iD: 2
+  _duration: 3
+  _increaseAmount: 2

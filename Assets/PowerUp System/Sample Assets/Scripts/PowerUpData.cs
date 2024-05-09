@@ -5,11 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PowerUps/PowerUps")]
 public class PowerUpData : ScriptableObject
 {
+    [SerializeField] 
+    public string _name;
     [SerializeField]
     public int _iD;
     [SerializeField]
     public float _duration;
-    [Tooltip("If Not Applicable = 0")]
-    [SerializeField] public float _increaseAmount;
+    [SerializeField] 
+    public float _increaseAmount;
 
 }

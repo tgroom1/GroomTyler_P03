@@ -128,19 +128,21 @@ public class PlayerController : MonoBehaviour
 
     void ActivateSizeBoost(float duration, float increaseAmount)
     {
+        PlayerController player = GetComponent<PlayerController>();
         if (!_isSizeBoostActive)
         {
             _isSizeBoostActive = true;
-           
+            player.transform.localScale *= increaseAmount;
             StartCoroutine(SizeBoostCooldown(duration, increaseAmount));
         }
     }
 
     IEnumerator SizeBoostCooldown(float duration, float increaseAmount)
     {
+        PlayerController player = GetComponent<PlayerController>();
         yield return new WaitForSeconds(duration);
         _isSizeBoostActive = false;
-        _jumpPower -= increaseAmount;
+        player.transform.localScale /= increaseAmount;
     }
 
     void ActivateZeroGravity(float duration, float increaseAmount)
